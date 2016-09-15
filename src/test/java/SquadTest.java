@@ -1,10 +1,15 @@
 import org.junit.*;
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Arrays;
+
 public class SquadTest {
   @After
   public void tearDown() {
     Squad.clear();
+    Hero.clear();
   }
 
   @Test
@@ -58,5 +63,27 @@ public class SquadTest {
   public void squad_instantiatesArraySize_4() {
     Squad mySquad = new Squad("Good Guys", "Fighting bad guys");
     assertEquals(3, mySquad.getHeroes().length);
+  }
+
+  @Test
+  public void addHero_addsHeroToArray_true() {
+    Squad mySquad = new Squad("Good Guys", "Fighting bad guys");
+    Hero testHero = new Hero("Superman", 100, "Flying", "Kryptonite");
+    mySquad.addHero(testHero, 1);
+    assertTrue(Arrays.asList(mySquad.getHeroes()).contains(testHero));
+  }
+
+  // @Test
+  // public void addHeroTest_addsHeroToArray_testHero() {
+  //   Squad mySquad = new Squad("Good Guys", "Fighting bad guys");
+  //   Hero testHero = new Hero("Superman", 100, "Flying", "Kryptonite");
+  //   assertEquals(mySquad.addHeroTest(testHero, 1), testHero);
+  // }
+
+  @Test
+  public void addHero_returnsNullWhenHeroesMoreThan4_null() {
+    Squad mySquad = new Squad("Good Guys", "Fighting bad guys");
+    Hero testHero = new Hero("Superman", 100, "Flying", "Kryptonite");
+    assertTrue(mySquad.addHero(testHero, 4) == null);
   }
 }

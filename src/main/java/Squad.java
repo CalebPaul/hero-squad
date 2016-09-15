@@ -45,5 +45,8 @@ public class Squad {
     return instances.get(id -1);
   }
 
+  public void addHero(Hero hero, int id) {
+    mHeroes[id] = hero;
+  }
 
 }
